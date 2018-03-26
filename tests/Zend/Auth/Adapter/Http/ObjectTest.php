@@ -22,39 +22,6 @@
 
 
 /**
- * PHPUnit\Framework\TestCase
- */
-
-
-/**
- * @see Zend_Auth_Adapter_Http
- */
-require_once 'Zend/Auth/Adapter/Http.php';
-
-
-/**
- * @see Zend_Auth_Adapter_Http_Resolver_File
- */
-require_once 'Zend/Auth/Adapter/Http/Resolver/File.php';
-
-
-/**
- * @see Zend_Controller_Request_Http
- */
-require_once 'Zend/Controller/Request/Http.php';
-
-
-/**
- * @see Zend_Controller_Response_Http
- */
-require_once 'Zend/Controller/Response/Http.php';
-
-/**
- * @see Zend_Debug
- */
-require_once 'Zend/Debug.php';
-
-/**
  * @category   Zend
  * @package    Zend_Auth
  * @subpackage UnitTests
@@ -198,6 +165,7 @@ class Zend_Auth_Adapter_Http_ObjectTest extends PHPUnit\Framework\TestCase
                 $this->fail('Accepted an invalid config');
             } catch (Zend_Auth_Adapter_Exception $e) {
                 // Good, it threw an exception
+                $this->assertSame('Config key \'accept_schemes\' is required', $e->getMessage());
             }
         }
     }
@@ -211,6 +179,7 @@ class Zend_Auth_Adapter_Http_ObjectTest extends PHPUnit\Framework\TestCase
             $this->fail('Attempted authentication without request/response objects');
         } catch (Zend_Auth_Adapter_Exception $e) {
             // Good, it threw an exception
+            $this->assertSame('Request and Response objects must be set before calling authenticate()', $e->getMessage());
         }
 
         $request  = $this->getMockBuilder('Zend_Controller_Request_Http')->getMock();
@@ -241,6 +210,7 @@ class Zend_Auth_Adapter_Http_ObjectTest extends PHPUnit\Framework\TestCase
             $this->fail("Tried Basic authentication without a resolver.\n" . Zend_Debug::dump($result->getMessages(),null,false));
         } catch (Zend_Auth_Adapter_Exception $e) {
             // Good, it threw an exception
+            $this->assertSame('A basicResolver object must be set before doing Basic authentication', $e->getMessage());
             unset($a);
         }
 
@@ -259,6 +229,7 @@ class Zend_Auth_Adapter_Http_ObjectTest extends PHPUnit\Framework\TestCase
             $this->fail("Tried Digest authentication without a resolver.\n" . Zend_Debug::dump($result->getMessages(),null,false));
         } catch (Zend_Auth_Adapter_Exception $e) {
             // Good, it threw an exception
+            $this->assertSame('A digestResolver object must be set before doing Digest authentication', $e->getMessage());
             unset($a);
         }
     }

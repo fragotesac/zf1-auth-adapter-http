@@ -22,17 +22,6 @@
 
 
 /**
- * PHPUnit\Framework\TestCase
- */
-
-
-/**
- * @see Zend_Auth_Adapter_Http_Resolver_File
- */
-require_once 'Zend/Auth/Adapter/Http/Resolver/File.php';
-
-
-/**
  * @category   Zend
  * @package    Zend_Auth
  * @subpackage UnitTests
