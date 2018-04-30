@@ -161,11 +161,11 @@ class Zend_Auth_Adapter_Http implements Zend_Auth_Adapter_Interface
     public function __construct(array $config)
     {
         if (!extension_loaded('hash')) {
-            throw new Zend_Auth_Adapter_Exception(__CLASS__  . ' requires the \'hash\' extension');
+            throw new Zend_Auth_Adapter_Exception(__CLASS__ . ' requires the \'hash\' extension');
         }
 
-        $this->_request  = null;
-        $this->_response = null;
+        $this->_request    = null;
+        $this->_response   = null;
         $this->_ieNoOpaque = false;
 
 
@@ -173,7 +173,7 @@ class Zend_Auth_Adapter_Http implements Zend_Auth_Adapter_Interface
             throw new Zend_Auth_Adapter_Exception('Config key \'accept_schemes\' is required');
         }
 
-        $schemes = explode(' ', $config['accept_schemes']);
+        $schemes              = explode(' ', $config['accept_schemes']);
         $this->_acceptSchemes = array_intersect($schemes, $this->_supportedSchemes);
         if (empty($this->_acceptSchemes)) {
             throw new Zend_Auth_Adapter_Exception('No supported schemes given in \'accept_schemes\'. Valid values: '
@@ -350,7 +350,7 @@ class Zend_Auth_Adapter_Http implements Zend_Auth_Adapter_Interface
         }
 
         list($clientScheme) = explode(' ', $authHeader);
-        $clientScheme = strtolower($clientScheme);
+        $clientScheme       = strtolower($clientScheme);
 
         // The server can issue multiple challenges, but the client should
         // answer with only the selected auth scheme.
@@ -488,7 +488,7 @@ class Zend_Auth_Adapter_Http implements Zend_Auth_Adapter_Interface
 
         $password = $this->_basicResolver->resolve($creds[0], $this->_realm);
         if ($password && $this->_secureStringCompare($password, $creds[1])) {
-            $identity = array('username'=>$creds[0], 'realm'=>$this->_realm);
+            $identity = array('username' => $creds[0], 'realm' => $this->_realm);
             return new Zend_Auth_Result(Zend_Auth_Result::SUCCESS, $identity);
         } else {
             return $this->_challengeClient();
@@ -578,7 +578,7 @@ class Zend_Auth_Adapter_Http implements Zend_Auth_Adapter_Interface
         // If our digest matches the client's let them in, otherwise return
         // a 401 code and exit to prevent access to the protected resource.
         if ($this->_secureStringCompare($digest, $data['response'])) {
-            $identity = array('username'=>$data['username'], 'realm'=>$data['realm']);
+            $identity = array('username' => $data['username'], 'realm' => $data['realm']);
             return new Zend_Auth_Result(Zend_Auth_Result::SUCCESS, $identity);
         } else {
             return $this->_challengeClient();
@@ -736,7 +736,7 @@ class Zend_Auth_Adapter_Http implements Zend_Auth_Adapter_Interface
 
                 // Big surprise: IE isn't RFC 2617-compliant.
                 if (false !== strpos($this->_request->getHeader('User-Agent'), 'MSIE')) {
-                    $temp[1] = '';
+                    $temp[1]           = '';
                     $this->_ieNoOpaque = true;
                 } else {
                     return false;

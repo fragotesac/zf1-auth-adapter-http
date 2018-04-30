@@ -103,13 +103,13 @@ class Zend_Auth_Adapter_Http_Resolver_File implements Zend_Auth_Adapter_Http_Res
     {
         if (empty($username)) {
             throw new Zend_Auth_Adapter_Http_Resolver_Exception('Username is required');
-        } else if (!ctype_print($username) || strpos($username, ':') !== false) {
+        } elseif (!ctype_print($username) || strpos($username, ':') !== false) {
             throw new Zend_Auth_Adapter_Http_Resolver_Exception('Username must consist only of printable characters, '
                                                               . 'excluding the colon');
         }
         if (empty($realm)) {
             throw new Zend_Auth_Adapter_Http_Resolver_Exception('Realm is required');
-        } else if (!ctype_print($realm) || strpos($realm, ':') !== false) {
+        } elseif (!ctype_print($realm) || strpos($realm, ':') !== false) {
             throw new Zend_Auth_Adapter_Http_Resolver_Exception('Realm must consist only of printable characters, '
                                                               . 'excluding the colon.');
         }

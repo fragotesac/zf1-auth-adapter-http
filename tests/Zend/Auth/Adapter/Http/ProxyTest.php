@@ -88,14 +88,14 @@ class Zend_Auth_Adapter_Http_ProxyTest extends PHPUnit\Framework\TestCase
             'realm'          => 'Test Realm',
             'proxy_auth'     => true
         );
-        $this->_digestConfig   = array(
+        $this->_digestConfig = array(
             'accept_schemes' => 'digest',
             'realm'          => 'Test Realm',
             'digest_domains' => '/ http://localhost/',
             'nonce_timeout'  => 300,
             'proxy_auth'     => true
         );
-        $this->_bothConfig     = array(
+        $this->_bothConfig = array(
             'accept_schemes' => 'basic digest',
             'realm'          => 'Test Realm',
             'digest_domains' => '/ http://localhost/',
@@ -153,7 +153,7 @@ class Zend_Auth_Adapter_Http_ProxyTest extends PHPUnit\Framework\TestCase
         $this->assertEquals('Proxy-Authenticate', $headers[1]['name']);
 
         // Check to see if the expected challenges match the actual
-        $this->assertEquals($basic,  $headers[0]['value']);
+        $this->assertEquals($basic, $headers[0]['value']);
         $this->assertEquals($digest, $headers[1]['value']);
     }
 
@@ -249,7 +249,7 @@ class Zend_Auth_Adapter_Http_ProxyTest extends PHPUnit\Framework\TestCase
         $tampered = $this->_digestReply('Bryce', 'ThisIsNotMyPassword');
         $tampered = preg_replace(
             '/ nonce="[a-fA-F0-9]{32}", /',
-            ' nonce="' . str_repeat('0', 32).'", ',
+            ' nonce="' . str_repeat('0', 32) . '", ',
             $tampered
         );
 
@@ -277,7 +277,8 @@ class Zend_Auth_Adapter_Http_ProxyTest extends PHPUnit\Framework\TestCase
         $bad = $this->_digestReply('Bryce', 'ThisIsNotMyPassword');
         $bad = preg_replace(
             '/realm="([^"]+)"/',  // cut out the realm
-            '', $bad
+            '',
+            $bad
         );
 
         $data = $this->_doAuth($bad, 'digest');

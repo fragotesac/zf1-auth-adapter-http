@@ -128,7 +128,7 @@ class Zend_Auth_Adapter_Http_Resolver_FileTest extends PHPUnit\Framework\TestCas
         try {
             $v = new Zend_Auth_Adapter_Http_Resolver_File($this->_badPath);
             $this->fail('Constructor accepted bad path');
-        } catch(Zend_Auth_Adapter_Http_Resolver_Exception $e) {
+        } catch (Zend_Auth_Adapter_Http_Resolver_Exception $e) {
             $this->assertContains('Path not readable', $e->getMessage());
         }
     }
