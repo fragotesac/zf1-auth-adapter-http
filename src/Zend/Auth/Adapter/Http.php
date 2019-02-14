@@ -735,7 +735,7 @@ class Zend_Auth_Adapter_Http implements Zend_Auth_Adapter_Interface
             if (!$ret || empty($temp[1])) {
 
                 // Big surprise: IE isn't RFC 2617-compliant.
-                if (false !== strpos($this->_request->getHeader('User-Agent'), 'MSIE')) {
+                if (false !== strpos((string) $this->_request->getHeader('User-Agent'), 'MSIE')) {
                     $temp[1]           = '';
                     $this->_ieNoOpaque = true;
                 } else {
