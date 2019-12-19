@@ -1,5 +1,6 @@
 parameters:
-    level: 6
+    checkMissingIterableValueType: false
+    level: 7
     paths:
         - ./
     excludes_analyse:

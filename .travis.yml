@@ -4,7 +4,10 @@ sudo: false
 
 env:
   global:
-    - COMPOSER_ARGS="" TMPDIR=/tmp USE_XDEBUG=false
+    - COMPOSER_ARGS=""
+    - TMPDIR=/tmp
+    - USE_XDEBUG=false
+    - COMPOSER_DISCARD_CHANGES=1
 
 branches:
   only:
@@ -29,7 +32,6 @@ script:
 jobs:
   fast_finish: true
   allow_failures:
-    - php: 7.4snapshot
     - php: nightly
   include:
     - php: 7.1
@@ -41,27 +43,26 @@ jobs:
     - php: 7.3
       env: COMPOSER_ARGS="--prefer-lowest"
     - php: 7.3
-    - php: 7.4snapshot
-      env: COMPOSER_ARGS="--ignore-platform-reqs --prefer-lowest"
-    - php: 7.4snapshot
-      env: COMPOSER_ARGS="--ignore-platform-reqs"
+    - php: 7.4
+      env: COMPOSER_ARGS="--prefer-lowest"
+    - php: 7.4
     - php: nightly
       env: COMPOSER_ARGS="--ignore-platform-reqs --prefer-lowest"
     - php: nightly
       env: COMPOSER_ARGS="--ignore-platform-reqs"
-      
+
     - stage: style check
       php: 7.2
       env: TMPDIR=/tmp USE_XDEBUG=false
       script:
         - composer style-check
-        
+
     - stage: phpstan analysis
       php: 7.2
       env: TMPDIR=/tmp USE_XDEBUG=false
       script:
         - composer phpstan
-        
+
     - stage: test with coverage
       php: 7.2
       env: TMPDIR=/tmp USE_XDEBUG=true CC_TEST_REPORTER_ID=13976333e33997d6b839dd5ca86eb887c8744a469b4624116285853a3e9b4b89
