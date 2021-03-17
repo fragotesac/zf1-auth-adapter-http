@@ -65,7 +65,7 @@ class Zend_Auth_Adapter_Http_Resolver_FileTest extends PHPUnit\Framework\TestCas
      *
      * @return void
      */
-    public function setUp()
+    public function setUp(): void
     {
         $this->_filesPath = dirname(dirname(__FILE__)) . '/_files';
         $this->_validPath = "$this->_filesPath/htdigest.3";
@@ -99,7 +99,7 @@ class Zend_Auth_Adapter_Http_Resolver_FileTest extends PHPUnit\Framework\TestCas
             $this->_resolver->setFile($this->_badPath);
             $this->fail('Accepted bad path');
         } catch (Zend_Auth_Adapter_Http_Resolver_Exception $e) {
-            $this->assertContains('Path not readable', $e->getMessage());
+            $this->assertStringContainsString('Path not readable', $e->getMessage());
         }
     }
 
@@ -129,7 +129,7 @@ class Zend_Auth_Adapter_Http_Resolver_FileTest extends PHPUnit\Framework\TestCas
             $v = new Zend_Auth_Adapter_Http_Resolver_File($this->_badPath);
             $this->fail('Constructor accepted bad path');
         } catch (Zend_Auth_Adapter_Http_Resolver_Exception $e) {
-            $this->assertContains('Path not readable', $e->getMessage());
+            $this->assertStringContainsString('Path not readable', $e->getMessage());
         }
     }
 
@@ -174,13 +174,13 @@ class Zend_Auth_Adapter_Http_Resolver_FileTest extends PHPUnit\Framework\TestCas
             $this->_resolver->resolve('bad:name', 'realm');
             $this->fail('Accepted malformed username with colon');
         } catch (Zend_Auth_Adapter_Http_Resolver_Exception $e) {
-            $this->assertContains('Username must consist', $e->getMessage());
+            $this->assertStringContainsString('Username must consist', $e->getMessage());
         }
         try {
             $this->_resolver->resolve("badname\n", 'realm');
             $this->fail('Accepted malformed username with newline');
         } catch (Zend_Auth_Adapter_Http_Resolver_Exception $e) {
-            $this->assertContains('Username must consist', $e->getMessage());
+            $this->assertStringContainsString('Username must consist', $e->getMessage());
         }
     }
 
@@ -195,13 +195,13 @@ class Zend_Auth_Adapter_Http_Resolver_FileTest extends PHPUnit\Framework\TestCas
             $this->_resolver->resolve('username', 'bad:realm');
             $this->fail('Accepted malformed realm with colon');
         } catch (Zend_Auth_Adapter_Http_Resolver_Exception $e) {
-            $this->assertContains('Realm must consist', $e->getMessage());
+            $this->assertStringContainsString('Realm must consist', $e->getMessage());
         }
         try {
             $this->_resolver->resolve('username', "badrealm\n");
             $this->fail('Accepted malformed realm with newline');
         } catch (Zend_Auth_Adapter_Http_Resolver_Exception $e) {
-            $this->assertContains('Realm must consist', $e->getMessage());
+            $this->assertStringContainsString('Realm must consist', $e->getMessage());
         }
     }
 
@@ -217,7 +217,7 @@ class Zend_Auth_Adapter_Http_Resolver_FileTest extends PHPUnit\Framework\TestCas
                 $this->_resolver->resolve('username', 'realm');
                 $this->fail('Expected thrown exception upon resolve() after moving valid file');
             } catch (Zend_Auth_Adapter_Http_Resolver_Exception $e) {
-                $this->assertContains('Unable to open password file', $e->getMessage());
+                $this->assertStringContainsString('Unable to open password file', $e->getMessage());
             }
             rename("$this->_filesPath/htdigest.3.renamed", "$this->_filesPath/htdigest.3");
         }
