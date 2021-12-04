@@ -54,14 +54,14 @@ class Zend_Auth_Adapter_Http implements Zend_Auth_Adapter_Interface
     /**
      * Object that looks up user credentials for the Basic scheme
      *
-     * @var Zend_Auth_Adapter_Http_Resolver_Interface
+     * @var Zend_Auth_Adapter_Http_Resolver_Interface|null
      */
     protected $_basicResolver;
 
     /**
      * Object that looks up user credentials for the Digest scheme
      *
-     * @var Zend_Auth_Adapter_Http_Resolver_Interface
+     * @var Zend_Auth_Adapter_Http_Resolver_Interface|null
      */
     protected $_digestResolver;
 
