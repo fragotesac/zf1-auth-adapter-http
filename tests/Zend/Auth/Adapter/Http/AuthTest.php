@@ -141,7 +141,7 @@ class Zend_Auth_Adapter_Http_AuthTest extends PHPUnit\Framework\TestCase
         $digest = $this->_digestChallenge();
 
         // Make sure the result is false
-        $this->assertTrue($result instanceof Zend_Auth_Result);
+        $this->assertInstanceOf(Zend_Auth_Result::class, $result);
         $this->assertFalse($result->isValid());
 
         // Verify the status code and the presence of both challenges
@@ -417,7 +417,7 @@ class Zend_Auth_Adapter_Http_AuthTest extends PHPUnit\Framework\TestCase
         extract($data); // $result, $status, $headers
 
         // Make sure the result is false
-        $this->assertTrue($result instanceof Zend_Auth_Result);
+        $this->assertInstanceOf(Zend_Auth_Result::class, $result);
         $this->assertFalse($result->isValid());
 
         // Verify the status code and the presence of the challenge
@@ -439,7 +439,7 @@ class Zend_Auth_Adapter_Http_AuthTest extends PHPUnit\Framework\TestCase
         extract($data); // $result, $status, $headers
 
         // Make sure the result is true
-        $this->assertTrue($result instanceof Zend_Auth_Result);
+        $this->assertInstanceOf(Zend_Auth_Result::class, $result);
         $this->assertTrue($result->isValid());
 
         // Verify we got a 200 response
@@ -457,7 +457,7 @@ class Zend_Auth_Adapter_Http_AuthTest extends PHPUnit\Framework\TestCase
         extract($data); // $result, $status, $headers
 
         // Make sure the result is false
-        $this->assertTrue($result instanceof Zend_Auth_Result);
+        $this->assertInstanceOf(Zend_Auth_Result::class, $result);
         $this->assertFalse($result->isValid());
 
         // Make sure it set the right HTTP code

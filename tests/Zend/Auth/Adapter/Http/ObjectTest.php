@@ -109,7 +109,7 @@ class Zend_Auth_Adapter_Http_ObjectTest extends PHPUnit\Framework\TestCase
             $this->fail('Valid config deemed invalid');
         }
         $this->assertNotEmpty($t);
-        $this->assertTrue($t instanceof Zend_Auth_Adapter_Http);
+        $this->assertInstanceOf(Zend_Auth_Adapter_Http::class, $t);
         unset($t);
 
         try {
@@ -118,7 +118,7 @@ class Zend_Auth_Adapter_Http_ObjectTest extends PHPUnit\Framework\TestCase
             $this->fail('Valid config deemed invalid');
         }
         $this->assertNotEmpty($t);
-        $this->assertTrue($t instanceof Zend_Auth_Adapter_Http);
+        $this->assertInstanceOf(Zend_Auth_Adapter_Http::class, $t);
         unset($t);
 
         try {
@@ -127,7 +127,7 @@ class Zend_Auth_Adapter_Http_ObjectTest extends PHPUnit\Framework\TestCase
             $this->fail('Valid config deemed invalid');
         }
         $this->assertNotEmpty($t);
-        $this->assertTrue($t instanceof Zend_Auth_Adapter_Http);
+        $this->assertInstanceOf(Zend_Auth_Adapter_Http::class, $t);
         unset($t);
     }
 
