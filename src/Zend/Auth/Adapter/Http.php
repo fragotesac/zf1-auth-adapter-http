@@ -375,7 +375,7 @@ class Zend_Auth_Adapter_Http implements Zend_Auth_Adapter_Interface
                 break;
             case 'digest':
                 $result = $this->_digestAuth($authHeader);
-            break;
+                break;
             default:
                 throw new Zend_Auth_Adapter_Exception('Unsupported authentication scheme');
         }
